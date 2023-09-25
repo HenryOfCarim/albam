@@ -141,7 +141,7 @@ types:
       - {id: vertex_position_end, type: u2}
       - {id: vertex_position_2, type: u4}
       - {id: vertex_offset, type: u4}
-      - {id: unk_05, type: u4}
+      - {id: vertex_offset_2, type: u4}
       - {id: face_position, type: u4}
       - {id: face_count, type: u4}
       - {id: face_offset, type: u4}
@@ -179,6 +179,16 @@ types:
             6: vertex_5
             7: vertex_5
             8: vertex_5
+      vertices2:
+        pos: _root.header.offset_buffer_vertices_2 + (vertex_position_2 * vertex_stride_2) + vertex_offset_2
+        repeat: expr
+        repeat-expr: num_vertices
+        type:
+          switch-on: vertex_stride_2
+          cases:
+            4: vertex2_4
+            8: vertex2_8
+        if: vertex_stride_2>0
 
   weight_bound:
     seq:
@@ -255,3 +265,12 @@ types:
       - {id: weight_values, type: u1, repeat: expr, repeat-expr: 8}
       - {id: normal, type: vec4_u1}
       - {id: uv, type: vec2_half_float}
+
+  vertex2_4:
+    seq:
+      - {id: unk_00, type: u1, repeat: expr, repeat-expr: 4}
+
+  vertex2_8:
+    seq:
+      - {id: unk_00, type: u1, repeat: expr, repeat-expr: 4}
+      - {id: tangetn, type: u1, repeat: expr, repeat-expr: 4}
