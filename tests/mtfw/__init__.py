@@ -56,7 +56,10 @@ def files_per_arc(file_extension, arc_paths):
     ids = []
     for arc_path in arc_paths:
         arc_name = os.path.basename(arc_path)
-        arc = ArcWrapper(None, arc_path)
+        try:
+            arc = ArcWrapper(None, arc_path)
+        except:
+            continue
         file_entries = arc.get_file_entries_by_extension(file_extension)
         if not file_entries:
             del arc
