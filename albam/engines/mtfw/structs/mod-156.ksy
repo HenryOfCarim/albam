@@ -76,14 +76,10 @@ types:
 
   unk_vtx8_block_01:
     seq:
-      - {id: unk_01, type: u2}
-      - {id: unk_02, type: u2}
-      - {id: unk_03, type: u4}
-      - {id: unk_05, type: u2}
-      - {id: unk_06, type: u2}
-      - {id: unk_07, type: u2}
-      - {id: unk_08, type: u2}
-      
+      - {id: position, type: vec4_s2}
+      - {id: unk_00, type: u4}
+      - {id: unk_01, type: u4}
+
   unk_vtx8_block_02:
     seq:
       - {id: unk_00, type: u2}
@@ -164,7 +160,7 @@ types:
         # XXX vertex_position and vertex_position_2 are equal most of the time
         # But if using vertex_position_2 when they are not, vertices import wrongly
         # needs investigation
-        pos: _root.header.offset_buffer_vertices + (vertex_position * vertex_stride) + vertex_offset
+        pos: _root.header.offset_buffer_vertices + (vertex_position_2 * vertex_stride) + vertex_offset
         repeat: expr
         repeat-expr: num_vertices # TODO: special case
         type:
@@ -273,4 +269,4 @@ types:
   vertex2_8:
     seq:
       - {id: unk_00, type: u1, repeat: expr, repeat-expr: 4}
-      - {id: tangetn, type: u1, repeat: expr, repeat-expr: 4}
+      - {id: tangent, type: u1, repeat: expr, repeat-expr: 4}

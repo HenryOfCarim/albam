@@ -80,8 +80,14 @@ def build_blender_mesh(mod, mesh, name, bbox_data, use_tri_strips=False):
     uvs_4 = []
     vertex_colors = []
     weights_per_bone = {}
+    vertex_start = 0
+
+    if(mesh.vertex_position > mesh.vertex_position_2):
+        vertex_start = mesh.vertex_position - mesh.vertex_position_2
 
     for vertex_index, vertex in enumerate(mesh.vertices):
+        if vertex_index < vertex_start:
+            continue
         _process_locations(mod.header.version, mesh, vertex, locations, bbox_data)
         _process_normals(vertex, normals)
         _process_uvs(vertex, uvs_1, uvs_2, uvs_3, uvs_4)
