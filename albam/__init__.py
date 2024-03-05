@@ -12,7 +12,7 @@ from albam.blender_ui.data import (
     AlbamCustomPropertiesImageFactory,
 )
 from albam.registry import blender_registry
-
+from albam.blender_ui.custom_properties import CopyPasterBuff
 
 bl_info = {
     "name": "Albam",
@@ -57,7 +57,7 @@ def register():
     bpy.utils.register_class(AlbamCustomPropertiesImage)
 
     bpy.types.Scene.albam = bpy.props.PointerProperty(type=AlbamData)
-
+    bpy.types.Scene.albam_copypaster = bpy.props.PointerProperty(type=CopyPasterBuff)
     bpy.types.Object.albam_asset = bpy.props.PointerProperty(type=AlbamAsset)
     bpy.types.Image.albam_asset = bpy.props.PointerProperty(type=AlbamAsset)
 
